@@ -1,0 +1,817 @@
+file    e000.s19
+option  6800
+
+data a000-a001
+lcomment a000 irq pointer
+label a000 irq
+rmb a000-a001
+
+data a002-a003
+lcomment a002 beginning addr pnch
+label a002 bega
+rmb a002-a003
+
+data a004-a005
+lcomment a004 ending addr pnch
+label a004 enda
+rmb a004-a005
+
+data a006-a007
+lcomment a006 nmi interrupt vector
+label a006 nmi
+rmb a006-a007
+
+data a008-a008
+lcomment a008 s high
+label a008 sp
+rmb a008
+
+data a009-a009
+lcomment a009 s low
+rmb a009
+
+data a00a-a00b
+lcomment a00a port address
+label a00a poradd
+rmb a00a-a00b
+
+data a00c-a00c
+lcomment a00c echo on/off flag
+label a00c porech
+rmb a00c
+
+data a00d-a00d
+lcomment a00d xreg high
+label a00d xhi
+rmb a00d
+
+data a00e-a00e
+lcomment a00e xreg low
+label a00e xlow
+rmb a00e
+
+data a00f-a00f
+lcomment a00f checksum
+label a00f cksm
+rmb a00f
+
+data a010-a011
+lcomment a010 x-reg temp stge
+label a010 xtemp
+rmb a010-a011
+
+data a012-a013
+lcomment a012 swi jump vector
+label a012 swijmp
+rmb a012-a013
+
+lcomment a044 temporary storage
+usedlabel a044 tw
+used a045
+
+lcomment a046 temporary storage
+usedlabel a046 temp
+used a047
+
+lcomment a047 bytect and mcont temp.
+usedlabel a047 bytect
+used a048
+
+lcomment 8004 control port address
+usedlabel 8004 ctlpor
+used 8005
+
+lcomment c000 jump to prom address
+usedlabel c000 prom
+used c001
+
+data a014-a015
+lcomment a014 breakpoint address
+label a014 bkpt
+rmb a014-a015
+
+data a016-a016
+lcomment a016 breakpoint data
+label a016 bklst
+rmb a016
+
+data a042-a042
+lcomment a042 swtbug stack
+label a042 stack
+rmb a042
+
+comment e000
+comment e000 i/o interrupt sequence
+label e000 irqv
+
+comment e005
+comment e005 jump to user program
+label e005 jump
+
+data e009-e00b
+lcomment e009 ct-1024 cursor control
+label e009 cursor
+byte e009-e00b
+
+lcomment e00c reader on, dis echo, get p#
+comment e00c
+comment e00c ascii loading routine
+label e00c load
+
+label e00f load3
+
+char e012
+
+lcomment e013 1st char not s
+
+lcomment e015 read char
+
+char e018
+
+char e01c
+
+lcomment e01d 2nd char not 1
+
+lcomment e01f zero checksum
+
+lcomment e022 read byte
+
+lcomment e026 byte count
+
+comment e029
+comment e029 build address
+
+comment e02b
+comment e02b store data
+label e02b load11
+
+lcomment e030 zero byte count
+
+lcomment e032 store data
+
+lcomment e034 data stored?
+
+label e03b load15
+
+label e040 load19
+char e041
+
+label e044 load21
+
+lcomment e047 read 2 frames
+comment e047
+comment e047 build address
+label e047 baddr
+
+lcomment e051 load ixr with number
+
+lcomment e055 get hex char
+comment e055
+comment e055 input byte (two frames)
+label e055 byte
+
+label e057 byte1
+
+lcomment e067 out hex left bcd digit
+comment e067
+label e067 outhl
+
+lcomment e06b out hex right bcd digit
+label e06b outhr
+
+comment e075
+comment e075 output one char
+label e075 outch
+
+label e078 inch
+
+comment e07b
+comment e07b print data pointed to by x reg
+label e07b pdata2
+
+label e07e pdata1
+
+lcomment e084 stop on hex 04
+
+comment e085
+label e085 c1
+
+comment e088
+comment e088 memory examine and change
+label e088 change
+
+label e08a cha51
+
+lcomment e08d c/r l/f
+
+lcomment e092 print address
+
+lcomment e097 print old data
+
+lcomment e099 output space
+
+lcomment e09b input char
+label e09b anoth
+
+char e0a6
+
+comment e0aa
+comment e0aa input hex character
+label e0aa inhex
+
+label e0ac inhex1
+
+lcomment e0b6 not hex
+
+lcomment e0ba not hex
+
+label e0be in2hg
+
+lcomment e0bf output 2 hex char
+comment e0bf
+label e0bf out2h
+
+lcomment e0c1 out left hex char
+label e0c1 out2ha
+
+lcomment e0c6 output right hext char
+
+lcomment e0c8 output 4 hex char + space
+comment e0c8
+label e0c8 out4hs
+
+lcomment e0ca output 2 hex char + space
+label e0ca out2hs
+
+lcomment e0cc space
+comment e0cc
+label e0cc outs
+
+comment e0d0
+comment e0d0 enter power on sequence
+label e0d0 start
+
+lcomment e0d3 branch for address compatibil
+
+comment e0d5
+comment e0d5 part of memory examine and change
+label e0d5 al3
+
+label e0de sk1
+
+lcomment e0e3 branch for mikbug equiv. cont
+comment e0e3
+label e0e3 eoe3
+
+comment e0e5
+label e0e5 al4
+
+lcomment e0f3 change memory
+
+lcomment e0f7 did change
+
+lcomment e0f9 didn't change
+
+label e0fc c3
+
+lcomment e101 init target stack ptr
+comment e101
+comment e101 continue powerup sequence
+label e101 al1
+
+comment e109
+comment e109 configure for pia and see if ok
+
+lcomment e10c init pia
+
+lcomment e115 bra for biload
+comment e115
+
+comment e117
+label e117 al2
+
+lcomment e119 acia master reset
+comment e119
+comment e119 initialize as acia
+
+comment e123
+comment e123 enter from software interrupt
+label e123 sf0
+
+lcomment e124 save targets stack pointer
+label e124 sfe1
+
+comment e127
+comment e127 decrement p counter
+
+label e12e sf0x
+
+comment e130
+comment e130 print contents of stack.
+label e130 print
+
+lcomment e13a cond codes
+
+lcomment e13c acc b
+
+lcomment e13e acc a
+
+lcomment e140 ixr
+
+lcomment e142 pgm counter
+
+lcomment e147 stack pointer
+
+label e14a swtctl
+
+lcomment e152 set contrl stack pointer
+comment e152
+label e152 contrl
+
+lcomment e155 reset to control port
+
+lcomment e15b turn echo on
+
+lcomment e15e get port # and type
+
+lcomment e162 set pia echo on if mp-c inter
+
+lcomment e165 turn punch off
+label e165 pof1
+
+lcomment e168 turn reader off
+
+label e16b contr1
+
+comment e173
+comment e173 command lookup routine
+label e173 look
+
+label e176 over
+
+lcomment e17a skip space
+
+label e181 sk3
+
+label e189 swtl1
+
+lcomment e18b jump to vectored software int
+comment e18b
+comment e18b software interrupt entry point
+label e18b sfe
+
+data e190-e192
+lcomment e190 end of tape
+comment e190
+label e190 s9
+char e190-e192
+
+data e193-e19b
+lcomment e193 punch format
+comment e193
+label e193 mtape1
+char e193-e19b
+
+data e19c-e19c
+lcomment e19c reader off
+label e19c mcloff
+char e19c
+
+data e19d-e1a4
+label e19d mcl
+char e19d-e1a4
+
+lcomment e1a5 binary loader input
+comment e1a5
+label e1a5 eia5
+
+lcomment e1a7 get nmi vector
+comment e1a7
+comment e1a7 nmi sequence
+label e1a7 nmiv
+
+comment e1ac
+label e1ac ineee
+
+lcomment e1ae get top address
+comment e1ae
+comment e1ae byte search routine
+label e1ae search,
+
+lcomment e1b4 get bottom address
+
+lcomment e1b7 get byte to search for
+
+label e1bb ove
+
+label e1c5 pnt
+
+comment e1d0
+comment e1d0 got to user program routine
+label e1d0 goto
+
+label e1d1 outeee
+
+lcomment e1d3 store index register
+comment e1d3
+comment e1d3 save ixr and load ixr with correct
+comment e1d3 port number and test for type
+label e1d3 SAVGET
+
+lcomment e1d6 same but don't save x
+label e1d6 GETPT1
+
+lcomment e1d9 check if current 
+label e1d9 ISACIA
+
+comment e1e0
+comment e1e0 continuation of search routine
+label e1e0 skp0
+
+label e1e6 incr1
+
+lcomment e1ee input 8 bit character
+comment e1ee
+label e1ee ineee1
+
+lcomment e1f0 get rid of parity bit
+binary e1f1
+
+lcomment e1f3 fix up stack when using
+comment e1f3
+label e1f3 bild
+
+lcomment e1f4 binary loader on swtpc tapes
+
+lcomment e1f6 save acc b
+comment e1f6
+comment e1f6 input one char into acc b
+label e1f6 inch8
+
+lcomment e1f7 save ixr, get port# and type
+
+lcomment e1f9 input from pia of not
+
+lcomment e1fb reconfig for 8 bit, 1 sb
+
+label e1ff aciain
+
+lcomment e202 not ready
+
+lcomment e204 load char
+
+lcomment e209 echo
+
+lcomment e20b don't echo
+
+lcomment e20d save acc b
+comment e20d
+comment e20d output one character
+label e20d outeee1
+
+comment e212
+label e212 aciout
+
+label e216 aciou1
+
+lcomment e21a acia not ready
+
+lcomment e21c output character
+
+lcomment e21e restore acc b
+label e21e res
+
+lcomment e223 look for start bit
+comment e223
+comment e223 pia input routine
+label e223 in1
+
+lcomment e227 delay half bit time
+
+lcomment e229 set del for full bit time
+
+lcomment e22d set up cntr with 8
+
+lcomment e22e wait one char time
+label e22e in3
+
+lcomment e237 wait for stop bit
+
+lcomment e239 is echo desired?
+
+lcomment e23c echo
+
+lcomment e23e restore ixr, accb
+
+lcomment e240 delay one half bit time
+comment e240
+comment e240 pia output routine
+label e240 iout
+
+lcomment e242 set up counter
+
+lcomment e244 set start bit
+
+lcomment e246 start timer
+
+lcomment e248 delay one bit time
+label e248 out1
+
+lcomment e24a put out one data bit
+
+lcomment e24d shift in next bit
+
+lcomment e24e decrement counter
+
+lcomment e24f test for 0
+
+lcomment e251 test for stop bits
+label e251 iout2
+
+lcomment e253 shift bit to sign
+
+lcomment e254 bra for 1 stop bit
+
+lcomment e256 delay for stop bits
+
+lcomment e25a is time up
+label e25a del
+
+lcomment e25e reset timer
+label e25e de
+
+lcomment e263 half bit delay
+comment e263
+label e263 ddl
+
+label e265 ddl1
+
+comment e269
+comment e269 optional port routine
+label e269 optl
+
+lcomment a00b set i/o address for 0x800
+label a00b poradd+1
+
+lcomment e26c set i/o address for $8000
+
+lcomment e272 initialize pia
+
+lcomment e274 set echo
+
+lcomment e276 P, L or E
+
+lcomment e27a look at table for e, l, p
+
+lcomment e27d set ddr
+comment e27d
+label e27d piaech
+
+label e283 noopt
+
+lcomment e284 set ddr
+comment e284
+comment e284 pia initialisation routine
+label e284 piaini
+
+comment e28f
+comment e28f general purpose delay loop
+label e28f delay
+const e290
+
+label e292 delay1
+
+comment e298
+comment e298 clear screen for ct-1024 type terminals
+label e298 clear
+
+lcomment e29e delay
+
+label e2a0 rdoff1
+
+comment e2a5
+comment e2a5 breakpoint entering routine
+label e2a5 break
+
+lcomment e2a8 breakpoints already in use?
+
+label e2ae break0
+
+label e2c7 inuse
+
+lcomment e2d4 fix  power up interrupt
+comment e2d4
+label e2d4 swiset
+
+label a043 stack+1
+
+label e2df sto
+
+label e2e2 sto1
+
+label e2e5 stortn
+
+comment e2e6
+comment e2e6 _unknown
+label e2e6 unk1
+
+comment e2ed
+comment e2ed handle t command
+label e2ed do_t
+
+comment e2f2
+comment e2f2 format end of tape with pgm. ctr. and s9
+label e2f2 pnchs9
+const e2f3
+
+const e2fa
+
+label e301 pdat
+
+label e304 pofc4
+
+label e308 c4
+
+lcomment e30b disable echo for acia
+comment e30b
+label e30b RDON
+
+label e31b rtnn
+
+lcomment e31c turn reader off
+comment e31c
+label e31c rdoff
+
+comment e320
+label e320 PNCHON
+
+comment e324
+label e324 pnchof
+
+comment e328
+comment e328 pia strobing routine for punch/read on/off
+label e328 strobe
+
+comment e32f
+comment e32f punch from beginning address (bega) thru
+comment e32f ending address (enda)
+label e32f punch
+
+label e332 punch2
+
+label e337 pun11
+
+label a005 enda+1
+
+label a045 tw+1
+
+label e352 pun22
+
+label e35d pun23
+
+comment e371
+comment e371 punch c/r l/f nulls s1
+
+comment e378
+comment e378 punch frame count
+
+lcomment e37b punch 2 hex characters
+
+comment e37d
+comment e37d punch address
+
+comment e384
+comment e384 punch data
+
+lcomment e387 punch one byte
+label e387 pun32
+
+lcomment e394 punch checksum
+
+lcomment e396 restore stack
+
+label e3af PUNT2
+
+lcomment e3bf read char
+comment e3bf
+comment e3bf read char and count checksum
+label e3bf B_INPUT
+
+lcomment e3c2 and add char to cksm
+
+data e410-e412
+char e410
+
+data e413-e415
+char e413
+
+comment e3ca
+comment e3ca Binary Load
+label e3ca BILOAD
+
+label e3cd B_OVER
+
+char e3d0
+
+char e3d6
+
+char e3da
+
+data e416-e416
+lcomment e416 goto
+comment e416
+comment e416 command table
+label e416 table
+char e416
+
+data e417-e418
+word e417
+
+data e419-e419
+lcomment e419 memory exam and change
+char e419
+
+data e41a-e41b
+word e41a
+
+data e41c-e41c
+lcomment e41c byte search
+char e41c
+
+data e41d-e41e
+word e41d
+
+data e41f-e41f
+lcomment e41f register dump
+char e41f
+
+data e420-e421
+word e420
+
+data e422-e422
+lcomment e422 jump
+char e422
+
+data e423-e424
+word e423
+
+data e425-e425
+lcomment e425 clear screen
+char e425
+
+data e426-e427
+word e426
+
+data e428-e428
+lcomment e428 breakpoint
+char e428
+
+data e429-e42a
+word e429
+
+data e42b-e42b
+lcomment e42b optional port
+char e42b
+
+data e42c-e42d
+word e42c
+
+data e42e-e42e
+lcomment e42e ascii punch
+label e42e table1
+char e42e
+
+data e42f-e430
+word e42f
+
+data e431-e431
+lcomment e431 ascii load
+char e431
+
+data e432-e433
+word e432
+
+data e434-e434
+lcomment e434 end of tape
+char e434
+
+data e435-e436
+word e435
+
+data e437-e437
+lcomment e437 _unknown
+char e437
+
+data e438-e439
+word e438
+
+data e43a-e43a
+lcomment e43a _unknown
+label e43a table3
+char e43a
+
+data e43b-e43c
+word e43b
+
+label e43d _tabend+3
+

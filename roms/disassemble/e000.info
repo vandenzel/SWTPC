@@ -1,0 +1,258 @@
+file    e000.s19
+option  6800
+
+label e18b SFE
+
+label e1a7 NMI
+
+label e0d0 START
+
+label a000 IRQ
+
+label a002 BEGA
+
+label a004 ENDA
+
+label a006 NMI
+
+label a008 SP
+
+label a00a PORADD
+
+label a00c PORECH
+
+label a00d XHI
+
+label a00e XLOW
+
+label a00f CKSM
+
+label a010 XTEMP
+
+label a012 SWIJMP
+
+label a014 BKPT
+
+label a016 BKLST
+
+label a044 TW
+
+label a046 TEMP
+
+label a047 BYTECT
+
+label a042 STACK
+
+label 8007 PIASB
+
+label 8006 PIADB
+
+label 8005 PIAS
+
+label 8004 PIAD
+
+label c000 PROM
+
+comment e000
+comment e000 I/O INTERRUPT SEQUENCE
+label e000 IRQV
+
+comment e005
+comment e005 JUMP TO USER PROGRAM
+label e005 JUMP
+
+data e009-e00b
+comment e009
+comment e009 CT-1024 CURSOR CONTROL
+label e009 CURSOR
+
+comment e00c
+comment e00c ASCII LOADING ROUTINE
+label e00c LOAD
+
+char e012
+
+char e018
+
+char e01c
+
+label e30b RDON
+
+comment e067
+comment e067 OUT HEX LEFT BCD DIGIT
+label e067 OUTHL
+
+comment e06b
+comment e06b OUT HEX RIGHT BCD DIGIT
+label e06b OUTHR
+
+comment e075
+comment e075 OUTPUT ONE CHAR
+label e075 OUTCH
+
+comment e078
+comment e078 INPUT ONE CHAR
+label e078 INCH
+
+comment e0aa
+comment e0aa INPUT HEX CHAR
+label e0aa INHEX
+
+label e0ac INHEX2
+
+label e0be IN1HG
+
+comment e0bf
+comment e0bf OUTPUT 2 HEX CHAR
+label e0bf sE0BF
+
+comment e1ac
+comment e1ac INPUT ONE CHAR INTO A-REGISTER
+label e1ac INEEE
+
+comment e1d1
+comment e1d1 OUTPUT ONE CHAR
+label e1d1 OUTEEE
+
+label e00f LOAD3
+
+label e044 LOAD21
+
+comment e055
+comment e055 INPUT BYTE (TWO FRAMES)
+label e055 BYTE
+
+comment e047
+comment e047 BUILD ADDRESS
+label e047 BADDR
+
+label e02b LOAD11
+
+label e03b LOAD15
+
+label e040 LOAD19
+char e041
+
+label e2a0 CONTRL
+
+comment e31c
+comment e31c OUTPUT CTRL CHARS
+label e31c CTRLS
+
+label e320 CTRLR
+
+label e324 CTRLT
+
+label e328 PCTRL
+
+comment e20d
+comment e20d REAL OUTEEE
+label e20d OUTEEE1
+
+comment e1d3
+comment e1d3 SAVE X REGISTER
+label e1d3 SAV
+
+comment e1e0
+comment e1e0 (unknown)
+label e1e0 sE1E0
+
+comment e101
+comment e101 CONTINUE POWER UP SEQUENCE
+label e101 AL1
+
+data e416-e416
+comment e416
+comment e416 COMMAND TABLE
+label e416 TABLE
+char e416
+
+data e417-e418
+word e417-e418
+
+data e419-e419
+char e419
+
+data e41a-e41b
+word e41a-e41b
+
+data e41c-e41c
+char e41c
+
+data e41d-e41e
+word e41d-e41e
+
+data e41f-e41f
+char e41f
+
+data e420-e421
+word e420-e421
+
+data e422-e422
+char e422
+
+data e423-e424
+word e423-e424
+
+data e425-e425
+char e425
+
+data e426-e427
+word e426-e427
+
+data e428-e428
+char e428
+
+data e429-e42a
+word e429-e42a
+
+data e42b-e42b
+char e42b
+
+data e42c-e42d
+word e42c-e42d
+
+data e42e-e42e
+char e42e
+
+data e42f-e430
+word e42f-e430
+
+data e431-e431
+char e431
+
+data e432-e433
+word e432-e433
+
+data e434-e434
+char e434
+
+data e435-e436
+word e435-e436
+
+data e437-e437
+char e437
+
+data e438-e439
+word e438-e439
+
+data e43a-e43a
+char e43a
+
+data e43b-e43c
+word e43b-e43c
+
+data e43d-e43d
+char e43d
+
+data e43e-e43f
+word e43e-e43f
+
+data e440-e440
+char e440
+
+data e441-e442
+word e441-e442
+
+const e277-e278
+
